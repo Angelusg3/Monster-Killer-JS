@@ -8,7 +8,6 @@ const MODE_STRONG_ATTACK = 'STRONG_ATTACK';
 const LOG_EVENT_PLAYER_ATTACK = 'PLAYER_ATTACK';
 const LOG_EVENT_PLAYER_STRONG_ATTACK = 'PLAYER_STRONG_ATTACK';
 const LOG_EVENT_MONSTER_ATTACK = 'MONSTER_ATTACK';
-const LOG_EVENT_MONSTER_STRONG_ATTACK = 'MONSTER_STRONG_ATTACK';
 const LOG_EVENT_PLAYER_HEAL = 'PLAYER_HEAL';
 const LOG_EVENT_GAME_OVER = 'GAME_OVER';
 
@@ -40,8 +39,6 @@ function writeToLog(ev, val, monsterHealth, playerHealth) {
   } else if (ev === LOG_EVENT_PLAYER_STRONG_ATTACK) {
     logEntry.target = 'MONSTER';
   } else if (ev === LOG_EVENT_MONSTER_ATTACK) {
-    logEntry.target = 'PLAYER';
-  } else if (ev === LOG_EVENT_MONSTER_STRONG_ATTACK) {
     logEntry.target = 'PLAYER';
   } else if (ev === LOG_EVENT_PLAYER_HEAL) {
     logEntry.target = 'PLAYER';

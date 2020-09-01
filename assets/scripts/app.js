@@ -15,6 +15,7 @@ const enteredValue = prompt('Maximum Life for the player and monster', '100');
 
 let chosenMaxLife = parseInt(enteredValue);
 let battleLog = [];
+let isBattleLogEmpty = true;
 
 if (isNaN(chosenMaxLife || chosenMaxLife <= 10)) {
   alert("Invalid input! default value of 100 is set!");
@@ -200,6 +201,13 @@ function printLogHandler() {
   // for(const logEntry of battleLog){
   //   console.log(logEntry);
   // }
+  
+  while (!!battleLog && isBattleLogEmpty) {
+    console.log("There is no property in the log");
+    alert("There is no log at this moment!");
+    isBattleLogEmpty = false;
+    break;
+  }
 
   let i = 0;
   for(const logEntry of battleLog){
@@ -207,8 +215,6 @@ function printLogHandler() {
     for (const key in logEntry) {
       if (logEntry.hasOwnProperty(key)) {
         console.log(`${key} => ${logEntry[key]}`);
-      }else{
-        console.log('There is no property in the log');
       }
     }
     i++;

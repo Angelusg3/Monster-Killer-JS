@@ -57,6 +57,12 @@ function writeToLog(ev, val, monsterHealth, playerHealth) {
       break;
   
     default:
+      logEntry = {
+        event: "There was nothing to log",
+        value: 'no value has been changed',
+        finalMonsterHealth: monsterHealth,
+        finalPlayerHealth: playerHealth
+      };
       break;
   }
 
@@ -162,7 +168,6 @@ function attackMonster(mode) {
 function attackHandler() {
   attackMonster(MODE_ATTACK);
 }
-
 function strongAttackHandler() {
   attackMonster(MODE_STRONG_ATTACK);
 }
@@ -192,8 +197,21 @@ function printLogHandler() {
   //   console.log(battleLog[i]);
   // }
 
+  // for(const logEntry of battleLog){
+  //   console.log(logEntry);
+  // }
+
+  let i = 0;
   for(const logEntry of battleLog){
-    console.log(logEntry);
+    console.log(`#${i}`);
+    for (const key in logEntry) {
+      if (logEntry.hasOwnProperty(key)) {
+        console.log(`${key} => ${logEntry[key]}`);
+      }else{
+        console.log('There is no property in the log');
+      }
+    }
+    i++;
   }
 
 }

@@ -16,6 +16,7 @@ const enteredValue = prompt('Maximum Life for the player and monster', '100');
 let chosenMaxLife = parseInt(enteredValue);
 let battleLog = [];
 let isBattleLogEmpty = true;
+let lastLoggedEntry;
 
 if (isNaN(chosenMaxLife || chosenMaxLife <= 10)) {
   alert("Invalid input! default value of 100 is set!");
@@ -167,13 +168,16 @@ function attackMonster(mode) {
 }
 
 function attackHandler() {
+  isBattleLogEmpty = false;
   attackMonster(MODE_ATTACK);
 }
 function strongAttackHandler() {
+  isBattleLogEmpty = false;
   attackMonster(MODE_STRONG_ATTACK);
 }
 
 function healPlayerHandler() {
+  isBattleLogEmpty = false;
   let healValue;
   if (currentPlayerHealth >= chosenMaxLife - HEAL_VALUE) {
     alert("You can't heal to more than our max initial health.");
@@ -205,21 +209,28 @@ function printLogHandler() {
   while (!!battleLog && isBattleLogEmpty) {
     console.log("There is no property in the log");
     alert("There is no log at this moment!");
+    writeToLog(
+      "NO LOG EVENT RECORDED",
+      'NO VALUE RECORDED',
+      currentMonsterHealth,
+      currentPlayerHealth
+    );
     isBattleLogEmpty = false;
     break;
   }
 
   let i = 0;
-  for(const logEntry of battleLog){
-    console.log(`#${i}`);
-    for (const key in logEntry) {
-      if (logEntry.hasOwnProperty(key)) {
+  for (const logEntry of battleLog) {
+    if ((!lastLoggedEntry && lastLoggedEntry !== 0) || lastLoggedEntry < i) {
+      console.log(`#${i}`);
+      for (const key in logEntry) {
         console.log(`${key} => ${logEntry[key]}`);
       }
+      lastLoggedEntry = i;
+      break;
     }
     i++;
   }
-
 }
 
 

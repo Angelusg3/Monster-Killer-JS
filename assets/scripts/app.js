@@ -102,6 +102,7 @@ function reset() {
   currentMonsterHealth = chosenMaxLife;
   currentPlayerHealth = chosenMaxLife;
   resetGame(chosenMaxLife);
+  getMaxLifeValues();
 }
 
 function endRound() {
